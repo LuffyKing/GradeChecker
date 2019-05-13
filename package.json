@@ -1,0 +1,54 @@
+{
+  "name": "grademaster",
+  "version": "1.0.0",
+  "description": "Help students evaluate their grades",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run clean-dist && npm run build-babel",
+    "start": "npm run build && node build/server/server.js",
+    "startDev": "nodemon --exec babel-node server/server.js",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "build-babel": "./node_modules/.bin/babel server/ -d build/server",
+    "clean-dist": "rm -rf build && mkdir build",
+    "clean-sql": "rm server/db/db.sql",
+    "setupDB": "npm run build && node build/server/db/dbEnvConfig.js && npm run createDB && npm run clean-sql",
+    "createDB": "psql -f server/db/db.sql"
+  },
+  "keywords": [
+    "grades"
+  ],
+  "author": "Oyindamola Aderinwale",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.4",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.4.4",
+    "babel-polyfill": "^6.26.0",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "coveralls": "^3.0.3",
+    "dotenv": "^8.0.0",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.17.2",
+    "mocha": "^6.1.4",
+    "morgan": "^1.9.1",
+    "nodemon": "^1.19.0",
+    "nyc": "^14.1.1"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "connect-redis": "^3.4.1",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "express-session": "^1.16.1",
+    "helmet": "^3.18.0",
+    "pg": "^7.11.0",
+    "redis": "^2.8.0",
+    "swagger-ui-express": "^4.0.2",
+    "validator": "^10.11.0",
+    "yamljs": "^0.3.0"
+  }
+}

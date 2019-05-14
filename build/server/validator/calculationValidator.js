@@ -18,7 +18,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 * topLimit is invalid
 */
 var calculationValidator = function calculationValidator(request, response, next) {
-  var ip = request.headers['X-Forwarded-For'] || request.ip;
+  var ip = request.headers['x-real-ip'] || request.connection.remoteAddress;
 
   if (!_validator["default"].isIP(ip)) {
     return response.status(422).send({

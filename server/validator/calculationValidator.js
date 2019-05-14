@@ -8,7 +8,7 @@ import validator from 'validator';
 * topLimit is invalid
 */
 const calculationValidator = (request, response, next) => {
-  const ip = request.headers['X-Forwarded-For'] || request.ip;
+  const ip = request.headers['x-real-ip'] || request.connection.remoteAddress;
   if (!validator.isIP(ip)) {
     return response.status(422).send({ message: 'IP Address error' });
   }

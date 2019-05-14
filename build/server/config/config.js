@@ -19,5 +19,12 @@ module.exports = {
     PASSWORD: process.env.PASSWORD,
     USERNAME: process.env.USERNAME
   },
-  production: {}
+  production: {
+    DATABASE_URL: process.env.DB_DEV_DATABASE_URL,
+    PORT: process.env.DEV_PORT,
+    SESSION: process.env.SESSION,
+    DOMAIN: process.env.DOMAIN,
+    PASSWORD: process.env.PASSWORD,
+    USERNAME: process.env.USERNAME
+  }
 };
